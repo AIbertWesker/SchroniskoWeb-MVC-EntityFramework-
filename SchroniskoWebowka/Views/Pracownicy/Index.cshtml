@@ -1,0 +1,41 @@
+﻿@model List<SchroniskoWebowka.Models.Pracownik>
+@{
+}
+<h1>Pracownicy</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Imie</th>
+			<th scope="col">Nazwisko</th>
+			<th scope="col">Data zatrudnienia</th>
+			<th scope="col">Miejscowość</th>
+			<th scope="col">Ulica</th>
+			<th scope="col">Nr. budynku</th>
+			<th scope="col">Nr. mieszkania</th>
+			<th scope="col">Telefon</th>
+			<th scope="col">Email</th>
+			<th scope="col">Administrator</th>
+			<th scope="col">Hasło</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var pracownik in Model)
+		{
+			<tr>
+				<td>@pracownik.PracownikImie</td>
+				<td>@pracownik.PracownikNazwisko</td>
+				<td>@pracownik.PracownikDataZatrudnienia.ToString("dd-MM-yyyy")</td>
+				<td>@pracownik.PracownikMiesjcowosc</td>
+				<td>@pracownik.PracownikUlica</td>
+				<td>@pracownik.PracownikNrBudynku</td>
+				<td>@pracownik.PracownikNrMieszkania</td>
+				<td>@pracownik.PracownikNumerTelefonu</td>
+				<td>@pracownik.PracownikEmail</td>
+				<td>@pracownik.PracownikCzyAdmin</td>
+				<td>@pracownik.PracownikHaslo</td>
+				<td>
+					<a href="Pracownicy/View/@pracownik.PracownikId">Edytuj</a> |
+			</tr>
+		}
+</tbody>
+</table>

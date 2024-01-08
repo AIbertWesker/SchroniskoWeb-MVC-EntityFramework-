@@ -1,0 +1,58 @@
+﻿@model SchroniskoWebowka.Models.UpdatePracownikViewModel
+@{
+}
+<h1>Edytuj Pracownika</h1>
+<form method="post" action="View" class="">
+    <div class="mb-3">
+        <label for="" class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="PracownikId" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Imie</label>
+        <input type="text" class="form-control" asp-for="PracownikImie">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Nazwisko</label>
+        <input type="text" class="form-control" asp-for="PracownikNazwisko">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Data zatrudnienia</label>
+        <input type="date" class="form-control" asp-for="PracownikDataZatrudnienia">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Miejscowość</label>
+        <input type="text" class="form-control" asp-for="PracownikMiesjcowosc">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Ulica</label>
+        <input type="text" class="form-control" asp-for="PracownikUlica">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Nr. budynku</label>
+        <input type="number" class="form-control" asp-for="PracownikNrBudynku">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Nr. mieszkania</label>
+        <input type="number" class="form-control" asp-for="PracownikNrMieszkania">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Telefon</label>
+        <input type="number" class="form-control" asp-for="PracownikNumerTelefonu">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Email</label>
+        <input type="email" class="form-control" asp-for="PracownikEmail">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Uprawnienia administratora dla tego pracownika</label>
+        <input type="checkbox" class="form-check-input"
+               name="IsActive"
+               value="true"
+        @(Model != null && Model.PracownikCzyAdmin.HasValue && Model.PracownikCzyAdmin.Value ? "checked" : "")>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Hasło</label>
+        <input type="text" class="form-control" asp-for="PracownikHaslo">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
