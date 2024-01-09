@@ -12,6 +12,12 @@ namespace SchroniskoWebowka.Controllers
         {
             _context = context;
         }
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+			var schroniskoContext = _context.Pies.Include(p => p.Charakter).Include(p => p.Rasa).Include(p => p.Strefa).Include(p => p.Wiek);
+			return View(await schroniskoContext.ToListAsync());
+		}
 
         [HttpGet]
         public IActionResult Add()
@@ -52,5 +58,7 @@ namespace SchroniskoWebowka.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
         }
+
+
     }
 }
