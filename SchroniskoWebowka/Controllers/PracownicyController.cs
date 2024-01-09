@@ -77,9 +77,50 @@ namespace SchroniskoWebowka.Controllers
                     PracownikCzyAdmin = pracownik.PracownikCzyAdmin,
                     PracownikHaslo = pracownik.PracownikHaslo
                 };
-                return View(viewModel);
+                return await Task.Run(() => View("View", viewModel));
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> View(UpdatePracownikViewModel model, bool IsActive)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var pracownik = await _context.Pracowniks.FirstOrDefaultAsync(x => x.PracownikId == model.PracownikId);
+            if (pracownik != null)
+            {
+                pracownik.PracownikImie = model.PracownikImie;
+                pracownik.PracownikNazwisko = model.PracownikNazwisko;
+                pracownik.PracownikDataZatrudnienia = model.PracownikDataZatrudnienia;
+                pracownik.PracownikDataZwolnienia = model.PracownikDataZwolnienia;
+                pracownik.PracownikMiesjcowosc = model.PracownikMiesjcowosc;
+                pracownik.PracownikUlica = model.PracownikUlica;
+                pracownik.PracownikNrBudynku = model.PracownikNrBudynku;
+                pracownik.PracownikNrMieszkania = model.PracownikNrMieszkania;
+                pracownik.PracownikNumerTelefonu = model.PracownikNumerTelefonu;
+                pracownik.PracownikEmail = model.PracownikEmail;
+                pracownik.PracownikCzyAdmin = IsActive;
+                pracownik.PracownikHaslo = model.PracownikHaslo;
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UpdatePracownikViewModel model)
+        {
+            var pracownik = await _context.Pracowniks.FindAsync(model.PracownikId);
+            if (pracownik != null)
+            {
+                _context.Pracowniks.Remove(pracownik);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
     }
 }
