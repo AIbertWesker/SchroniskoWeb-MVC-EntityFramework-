@@ -1,0 +1,37 @@
+﻿@model SchroniskoWebowka.Models.AddPiesViewModel
+@{
+}
+<form method="post" action="Add">
+    <div class="mb-3">
+        <label for="" class="form-label">Nazwa</label>
+        <input type="text" class="form-control" asp-for="PiesNazwa">
+    </div>
+    @Html.DropDownList("WybranaRasa", ViewBag.Rasa as SelectList, "Wybierz rase")
+    @Html.DropDownList("WybranyWiek", ViewBag.Wiek as SelectList, "Wybierz wiek")
+    @Html.DropDownList("WybranyCharakter", ViewBag.Charakter as SelectList, "Wybierz charakter")
+    @Html.DropDownList("WybranaStrefa", ViewBag.Strefa as SelectList, "Wybierz strefe")
+    <div class="mb-3">
+        <label for="" class="form-label">Data przygarnięcia</label>
+        <input type="date" class="form-control" asp-for="PiesDataUrodzenia">
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" asp-for="PiesCzySuka" /> @Html.DisplayNameFor(model => model.PiesCzySuka)
+        </label>
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" asp-for="PiesCzyDostepny" /> @Html.DisplayNameFor(model => model.PiesCzyDostepny)
+        </label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Kolor i wzór sierści</label>
+        <textarea class="form-control" asp-for="PiesKolorWzorSiersci"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Opis</label>
+        <textarea class="form-control" asp-for="PiesOpis"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

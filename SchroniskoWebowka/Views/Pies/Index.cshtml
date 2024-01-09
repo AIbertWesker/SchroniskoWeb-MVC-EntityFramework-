@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SchroniskoWebowka.Models.Pies>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PiesNazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiesCzySuka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiesDataUrodzenia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiesZdjecie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiesCzyDostepny)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiesKolorWzorSiersci)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiesOpis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Charakter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Strefa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Wiek)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiesNazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiesCzySuka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiesDataUrodzenia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiesZdjecie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiesCzyDostepny)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiesKolorWzorSiersci)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiesOpis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Charakter.CharakterId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rasa.RasaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Strefa.StrefaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wiek.WiekId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PiesId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PiesId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PiesId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

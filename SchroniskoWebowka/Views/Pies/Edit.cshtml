@@ -1,0 +1,84 @@
+﻿@model SchroniskoWebowka.Models.Pies
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Pies</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PiesId" />
+            <div class="form-group">
+                <label asp-for="StrefaId" class="control-label"></label>
+                <select asp-for="StrefaId" class="form-control" asp-items="ViewBag.StrefaId"></select>
+                <span asp-validation-for="StrefaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CharakterId" class="control-label"></label>
+                <select asp-for="CharakterId" class="form-control" asp-items="ViewBag.CharakterId"></select>
+                <span asp-validation-for="CharakterId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RasaId" class="control-label"></label>
+                <select asp-for="RasaId" class="form-control" asp-items="ViewBag.RasaId"></select>
+                <span asp-validation-for="RasaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WiekId" class="control-label"></label>
+                <select asp-for="WiekId" class="form-control" asp-items="ViewBag.WiekId"></select>
+                <span asp-validation-for="WiekId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PiesNazwa" class="control-label"></label>
+                <input asp-for="PiesNazwa" class="form-control" />
+                <span asp-validation-for="PiesNazwa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PiesCzySuka" class="control-label"></label>
+                <input asp-for="PiesCzySuka" class="form-control" />
+                <span asp-validation-for="PiesCzySuka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PiesDataUrodzenia" class="control-label"></label>
+                <input asp-for="PiesDataUrodzenia" class="form-control" />
+                <span asp-validation-for="PiesDataUrodzenia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PiesZdjecie" class="control-label"></label>
+                <input asp-for="PiesZdjecie" class="form-control" />
+                <span asp-validation-for="PiesZdjecie" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PiesCzyDostepny" /> @Html.DisplayNameFor(model => model.PiesCzyDostepny)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="PiesKolorWzorSiersci" class="control-label"></label>
+                <input asp-for="PiesKolorWzorSiersci" class="form-control" />
+                <span asp-validation-for="PiesKolorWzorSiersci" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PiesOpis" class="control-label"></label>
+                <input asp-for="PiesOpis" class="form-control" />
+                <span asp-validation-for="PiesOpis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
