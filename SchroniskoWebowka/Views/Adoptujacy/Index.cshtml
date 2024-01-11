@@ -1,0 +1,51 @@
+﻿@model List<SchroniskoWebowka.Models.Adoptujacy>
+@{
+}
+<h1>Adoptujacy</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Imie</th>
+			<th scope="col">Nazwisko</th>
+			<th scope="col">Miejscowość</th>
+			<th scope="col">Płeć</th>
+			<th scope="col">Telefon</th>
+			<th scope="col">Zaufanie</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var adopt in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => adopt.AdoptujacyImie)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => adopt.AdoptujacyNazwisko)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => adopt.AdoptujacyMiejscowosc)
+				</td>
+				<td>
+					@if (adopt.AdoptujacyCzyKobieta == true)
+					{
+						<text>Kobieta</text>
+					}
+					else
+					{
+						<text>Mężczyzna</text>
+					}
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => adopt.AdoptujacyTelefon)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => adopt.Zaufanie.ZaufanieNazwa)
+				</td>
+				<td>
+					<a href="Adoptujacy/Edit/@adopt.AdoptujacyId">Detale</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
