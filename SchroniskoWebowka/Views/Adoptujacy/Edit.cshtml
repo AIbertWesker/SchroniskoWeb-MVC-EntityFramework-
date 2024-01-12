@@ -17,12 +17,12 @@
     <div>
         <label>
             <input type="radio" name="AdoptujacyCzyKobieta" value="false"
-            @(Model != null && Model.AdoptujacyCzyKobieta.HasValue && Model.AdoptujacyCzyKobieta.Value ? "checked" : null)>
+            @(Model != null && Model.AdoptujacyCzyKobieta.HasValue && !Model.AdoptujacyCzyKobieta.Value ? "checked" : null)>
             Mężczyzna
         </label>
         <label>
             <input type="radio" name="AdoptujacyCzyKobieta" value="true"
-            @(Model != null && Model.AdoptujacyCzyKobieta.HasValue && !Model.AdoptujacyCzyKobieta.Value ? "checked" : null)>
+            @(Model != null && Model.AdoptujacyCzyKobieta.HasValue && Model.AdoptujacyCzyKobieta.Value ? "checked" : null)>
             Kobieta
         </label>
     </div>
