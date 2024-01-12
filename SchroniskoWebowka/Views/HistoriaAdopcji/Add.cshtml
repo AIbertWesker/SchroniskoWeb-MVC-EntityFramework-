@@ -1,0 +1,23 @@
+﻿@model SchroniskoWebowka.Models.AddHistoriaAdopcjiViewModel
+@{
+    var piesRasy = ViewBag.PiesRasy as SelectList;
+    var adoptujacy = ViewBag.Adoptujacy as SelectList;
+}
+<form method="post" action="Add">
+<select asp-for="PiesId" asp-items="piesRasy">
+    <option value="">Wybierz psa do adopcji</option>
+</select>
+<select asp-for="AdoptujacyId" asp-items="adoptujacy">
+    <option value="">Wybierz nowego właściciela</option>
+</select>
+<div class="mb-3">
+    <label for="" class="form-label">Data dokonania adopcji</label>
+    <input type="date" class="form-control" asp-for="HistoriaAdopicjiData">
+</div>
+<div class="mb-3">
+    <label for="" class="form-label">Opłata</label>
+    <input type="text" class="form-control" asp-for="HistoriaAdopicjiOplata">
+</div>
+
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>

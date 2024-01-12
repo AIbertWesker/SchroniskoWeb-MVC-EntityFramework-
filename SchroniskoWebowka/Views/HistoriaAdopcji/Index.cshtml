@@ -1,0 +1,42 @@
+﻿@model List<SchroniskoWebowka.Models.HistoriaAdopcji>
+@{
+}
+<h1>Hisotria adopcji</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Adoptujący</th>
+			<th scope="col">Pies</th>
+			<th scope="col">Status</th>
+			<th scope="col">Data</th>
+			<th scope="col">Opłata</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var histo in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => histo.Adoptujacy.AdoptujacyImie)
+					@Html.DisplayFor(modelItem => histo.Adoptujacy.AdoptujacyNazwisko)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => histo.Pies.Rasa.RasaNazwa)
+					@Html.DisplayFor(modelItem => histo.Pies.PiesNazwa)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => histo.StatusAdopcji.StatusAdopcjiNazwa)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => histo.HistoriaAdopicjiData)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => histo.HistoriaAdopicjiOplata)
+				</td>
+				<td>
+					<a href="HistoriaAdopcji/Edit/@histo.HistoriaAdopicjiId">Detale</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
