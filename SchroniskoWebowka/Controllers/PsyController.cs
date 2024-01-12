@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchroniskoWebowka.Models;
+using System.IO;
+using System.IO.Compression;
 
 namespace SchroniskoWebowka.Controllers
 {
@@ -138,5 +140,51 @@ namespace SchroniskoWebowka.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-	}
+
+        [HttpGet]
+        public async Task<IActionResult> Zdjecie(decimal id)
+        {
+            var pies = await _context.Pies.FirstOrDefaultAsync(x => x.PiesId == id);
+            var viewModel = new ZdjeciePsaViewModel()
+            {
+                Id = pies.PiesId,
+                ImageData = null
+            };
+
+            if (viewModel != null)
+            {
+                return await Task.Run(() => View("Zdjecie", viewModel));
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Zdjecie(ZdjeciePsaViewModel piesViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            using (var memoryStream = new MemoryStream())
+            {
+                await piesViewModel.ImageData.CopyToAsync(memoryStream);
+
+                if (memoryStream.Length < 2097152)
+                {
+                    var piesToUpdate = await _context.Pies.FirstOrDefaultAsync(x => x.PiesId == piesViewModel.Id);
+
+                    piesToUpdate.PiesZdjecie = memoryStream.ToArray();
+
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("File", "The file is too large.");
+                }
+            }
+            return RedirectToAction("Index","Home");
+        }
+    }
 }

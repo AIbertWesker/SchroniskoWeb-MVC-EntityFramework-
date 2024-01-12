@@ -1,0 +1,19 @@
+﻿@model SchroniskoWebowka.Models.ZdjeciePsaViewModel
+@{
+}
+ <form enctype="multipart/form-data" method="post">
+        <dl>
+            <dt>
+                <label asp-for="ImageData"></label>
+            </dt>
+            <dd>
+                <input asp-for="ImageData" type="file">
+            </dd>
+        </dl>
+        <input asp-page-handler="Upload" class="btn" type="submit" value="Upload">
+
+
+
+
+<button type="submit" class="btn btn-primary">Dodaj</button>
+</form>

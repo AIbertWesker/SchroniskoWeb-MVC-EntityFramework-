@@ -4,7 +4,8 @@
     <div class="row">
         <div class="col-md-6">
             <!-- Zdjęcie psa z obsługą bazy danych -->
-            <img src="@Model.PiesZdjecie" alt="@Model.PiesNazwa" class="img-fluid">
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.PiesZdjecie)" alt="@Model.PiesNazwa" class="img-fluid">
+
         </div>
 
         <div class="col-md-6">
