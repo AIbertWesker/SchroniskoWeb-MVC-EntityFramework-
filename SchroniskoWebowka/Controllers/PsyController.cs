@@ -126,5 +126,17 @@ namespace SchroniskoWebowka.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-    }
+
+        [HttpGet]
+        public async Task<IActionResult> Detal(decimal id)
+        {
+            var pies = await _context.Pies.Include(p => p.Charakter).Include(p => p.Rasa).Include(p => p.Strefa).Include(p => p.Wiek).FirstOrDefaultAsync(x => x.PiesId == id);
+            
+            if (pies != null)
+            {
+                return await Task.Run(() => View("Detal", pies));
+            }
+            return RedirectToAction("Index", "Home");
+        }
+	}
 }

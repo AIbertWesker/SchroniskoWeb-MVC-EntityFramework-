@@ -1,0 +1,26 @@
+﻿@model SchroniskoWebowka.Models.Pies
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Zdjęcie psa z obsługą bazy danych -->
+            <img src="@Model.PiesZdjecie" alt="@Model.PiesNazwa" class="img-fluid">
+        </div>
+
+        <div class="col-md-6">
+            <!-- Informacje o psie -->
+            <h2>@Model.PiesNazwa</h2>
+            <p>@Model.PiesOpis</p>
+
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Rasa:</strong> @Model.Rasa.RasaNazwa</li>
+                <li class="list-group-item"><strong>Wiek:</strong> @Model.Wiek.WiekNazwa</li>
+                <li class="list-group-item"><strong>Charakter:</strong> @Model.Charakter.CharakterNazwa</li>
+                <li class="list-group-item"><strong>Strefa:</strong> @Model.Strefa.StrefaNazwa</li>
+                <li class="list-group-item"><strong>Data przyjęcia:</strong> @Model.PiesDataUrodzenia</li>
+                <li class="list-group-item"><strong>Opis sierści:</strong> @Model.PiesKolorWzorSiersci</li>
+                <!-- Dodaj inne informacje o psie tutaj -->
+            </ul>
+        </div>
+    </div>
+</div>

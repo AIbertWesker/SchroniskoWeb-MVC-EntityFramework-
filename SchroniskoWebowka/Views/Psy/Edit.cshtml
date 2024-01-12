@@ -35,6 +35,10 @@
         <label for="" class="form-label">Opis</label>
         <textarea class="form-control" asp-for="PiesOpis"></textarea>
     </div>
+    <div class="mb-3">
+        <label for="Zdjecie" class="form-label">Zdjęcie</label>
+        <input type="file" id="Zdjecie" class="form-control" asp-for="Zdjecie">
+    </div>
 
     <button type="submit" class="btn btn-primary" onclick="return confirm('Czy na pewno chcesz edytowac?');">Edytuj</button>
     <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć?');" asp-action="Delete" asp-controller="Psy">Usuń</button>
