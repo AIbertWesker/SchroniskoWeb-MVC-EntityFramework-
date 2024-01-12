@@ -1,0 +1,52 @@
+﻿@model SchroniskoWebowka.Models.UpdateAdoptujacyViewModel
+@{
+}
+<form method="post" action="Add">
+        <div class="mb-3">
+        <label for="" class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="AdoptujacyId" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Imie</label>
+        <input type="text" class="form-control" asp-for="AdoptujacyImie">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Nazwisko</label>
+        <input type="text" class="form-control" asp-for="AdoptujacyNazwisko">
+    </div>
+    <div>
+        <label>
+            <input type="radio" name="AdoptujacyCzyKobieta" value="false"
+            @(Model != null && Model.AdoptujacyCzyKobieta.HasValue && Model.AdoptujacyCzyKobieta.Value ? "checked" : null)>
+            Mężczyzna
+        </label>
+        <label>
+            <input type="radio" name="AdoptujacyCzyKobieta" value="true"
+            @(Model != null && Model.AdoptujacyCzyKobieta.HasValue && !Model.AdoptujacyCzyKobieta.Value ? "checked" : null)>
+            Kobieta
+        </label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Miejscowość</label>
+        <input type="text" class="form-control" asp-for="AdoptujacyMiejscowosc">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Ulica</label>
+        <input type="text" class="form-control" asp-for="AdoptujacyUlica">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Nr. budynku</label>
+        <input type="number" class="form-control" asp-for="AdoptujacyNrBudynku">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Nr. mieszkania</label>
+        <input type="number" class="form-control" asp-for="AdoptujacyNrMieszkania">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Telefon</label>
+        <input type="number" class="form-control" asp-for="AdoptujacyTelefon">
+    </div>
+    @Html.DropDownList("ZaufanieId", ViewBag.Zaufanie as SelectList, null, new { @value = Model.ZaufanieId })
+    <button type="submit" class="btn btn-primary" onclick="return confirm('Czy na pewno chcesz edytować?');">Edit</button>
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć?');" asp-action="Delete" asp-controller="Adoptujacy">Usuń</button>
+</form>
