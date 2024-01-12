@@ -51,7 +51,7 @@ namespace SchroniskoWebowka.Controllers
             };
             await _context.Pracowniks.AddAsync(pracownik);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -105,7 +105,7 @@ namespace SchroniskoWebowka.Controllers
                 pracownik.PracownikCzyAdmin = IsActive;
                 pracownik.PracownikHaslo = model.PracownikHaslo;
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Home");
         }
@@ -120,7 +120,7 @@ namespace SchroniskoWebowka.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

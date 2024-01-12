@@ -1,37 +1,63 @@
 ﻿@model SchroniskoWebowka.Models.AddPiesViewModel
-@{
-}
+
 <form method="post" action="Add">
     <div class="mb-3">
-        <label for="" class="form-label">Nazwa</label>
-        <input type="text" class="form-control" asp-for="PiesNazwa">
-    </div>
-    @Html.DropDownList("WybranaRasa", ViewBag.Rasa as SelectList, "Wybierz rase")
-    @Html.DropDownList("WybranyWiek", ViewBag.Wiek as SelectList, "Wybierz wiek")
-    @Html.DropDownList("WybranyCharakter", ViewBag.Charakter as SelectList, "Wybierz charakter")
-    @Html.DropDownList("WybranaStrefa", ViewBag.Strefa as SelectList, "Wybierz strefe")
-    <div class="mb-3">
-        <label for="" class="form-label">Data przygarnięcia</label>
-        <input type="date" class="form-control" asp-for="PiesDataUrodzenia">
-    </div>
-    <div class="form-group form-check">
-        <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" asp-for="PiesCzySuka" /> @Html.DisplayNameFor(model => model.PiesCzySuka)
-        </label>
-    </div>
-    <div class="form-group form-check">
-        <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" asp-for="PiesCzyDostepny" /> @Html.DisplayNameFor(model => model.PiesCzyDostepny)
-        </label>
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label">Kolor i wzór sierści</label>
-        <textarea class="form-control" asp-for="PiesKolorWzorSiersci"></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label">Opis</label>
-        <textarea class="form-control" asp-for="PiesOpis"></textarea>
+        <label for="PiesNazwa" class="form-label">Nazwa</label>
+        <input type="text" id="PiesNazwa" class="form-control" asp-for="PiesNazwa">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="mb-3">
+        <label for="WybranaRasa" class="form-label">Rasa</label>
+        @Html.DropDownList("WybranaRasa", ViewBag.Rasa as SelectList, "Wybierz rasę", new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label for="WybranyWiek" class="form-label">Wiek</label>
+        @Html.DropDownList("WybranyWiek", ViewBag.Wiek as SelectList, "Wybierz wiek", new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label for="WybranyCharakter" class="form-label">Charakter</label>
+        @Html.DropDownList("WybranyCharakter", ViewBag.Charakter as SelectList, "Wybierz charakter", new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label for="WybranaStrefa" class="form-label">Strefa</label>
+        @Html.DropDownList("WybranaStrefa", ViewBag.Strefa as SelectList, "Wybierz strefę", new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label for="DataAdopcji" class="form-label">Data przygarnięcia</label>
+        <input type="date" id="DataAdopcji" class="form-control" asp-for="PiesDataUrodzenia">
+    </div>
+
+    <div class="form-group form-check">
+        <input class="form-check-input" type="checkbox" id="PiesCzySuka" asp-for="PiesCzySuka">
+        <label class="form-check-label" for="PiesCzySuka">Czy pies jest suką?</label>
+    </div>
+
+    <div class="form-group form-check">
+        <input class="form-check-input" type="checkbox" id="PiesCzyDostepny" asp-for="PiesCzyDostepny">
+        <label class="form-check-label" for="PiesCzyDostepny">Czy pies jest dostępny?</label>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="PiesKolorWzorSiersci" class="form-label">Kolor i wzór sierści</label>
+        <textarea id="PiesKolorWzorSiersci" class="form-control" asp-for="PiesKolorWzorSiersci"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="PiesOpis" class="form-label">Opis</label>
+        <textarea id="PiesOpis" class="form-control" asp-for="PiesOpis"></textarea>
+    </div>
+
+    <script>
+        var dzisiaj = new Date();
+        var dzisiajFormatted = dzisiaj.toISOString().slice(0, 10);
+
+        document.getElementById("DataAdopcji").value = dzisiajFormatted;
+    </script>
+
+    <button type="submit" class="btn btn-primary">Dodaj</button>
 </form>

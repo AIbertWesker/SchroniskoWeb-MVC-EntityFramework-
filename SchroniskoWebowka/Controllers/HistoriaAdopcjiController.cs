@@ -70,7 +70,7 @@ namespace SchroniskoWebowka.Controllers
 
             await _context.HistoriaAdopcjis.AddAsync(historiaAdopcji);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

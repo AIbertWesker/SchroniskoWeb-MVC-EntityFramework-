@@ -4,7 +4,7 @@
 <h1>Edytuj Pracownika</h1>
 <form method="post" action="View" class="">
     <div class="mb-3">
-        <label for="" class="form-label">Id</label>
+        <label for="" class="form-label">Identyfikator</label>
         <input type="text" class="form-control" asp-for="PracownikId" readonly>
     </div>
     <div class="mb-3">
@@ -51,9 +51,10 @@
         @(Model != null && Model.PracownikCzyAdmin.HasValue && Model.PracownikCzyAdmin.Value ? "checked" : "")>
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Hasło</label>
-        <input type="text" class="form-control" asp-for="PracownikHaslo">
+        <label for="PracownikHaslo" class="form-label">Hasło</label>
+        <input type="text" id="PracownikHaslo" class="form-control" asp-for="PracownikHaslo">
     </div>
+
     <button type="submit" class="btn btn-primary" onclick="return confirm('Czy na pewno chcesz edytować?');">Edit</button>
     <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć?');" asp-action="Delete" asp-controller="Pracownicy">Usuń</button>
 </form>

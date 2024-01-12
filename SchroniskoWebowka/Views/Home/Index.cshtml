@@ -1,8 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Strona Główna";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="text-center mt-5">
+        <h1 class="display-4">Witaj, Pracowniku!</h1>
+        <p class="lead">Dziękujemy za poświęcenie swojego czasu i wysiłku dla dobra zwierząt.</p>
+        <p class="lead">Na tej stronie znajdziesz narzędzia do zarządzania danymi schroniska.</p>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Zarządzaj psami</h2>
+                    <p class="card-text">Dodawaj, edytuj i przeglądaj informacje o psach w schronisku.</p>
+                    <a href="/Psy/Index" class="btn btn-primary">Przejdź do zarządzania psami</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Zarządzaj adopcjami</h2>
+                    <p class="card-text">Śledź historię adopcji i zarządzaj danymi dotyczącymi nowych właścicieli.</p>
+                    <a href="/HistoriaAdopcji/Index" class="btn btn-primary">Przejdź do zarządzania adopcjami</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -12,7 +12,7 @@
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Data zatrudnienia</label>
-        <input type="date" class="form-control" asp-for="PracownikDataZatrudnienia">
+        <input type="date" class="form-control" id="PracownikDataZatrudnienia" asp-for="PracownikDataZatrudnienia">
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Miejscowość</label>
@@ -45,13 +45,17 @@
            value="true" 
            @(Model != null && Model.PracownikCzyAdmin.HasValue && Model.PracownikCzyAdmin.Value ? "checked" : "")>
     </div>
-    <div class="col-md-4">
-        @Html.DropDownList("Rasy", new SelectList(ViewBag.data, "RasaId", "RasaNazwa"))
-    </div>
-
     <div class="mb-3">
         <label for="" class="form-label">Hasło</label>
         <input type="text" class="form-control" asp-for="PracownikHaslo">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <script>
+        var dzisiaj = new Date();
+        var dzisiajFormatted = dzisiaj.toISOString().slice(0, 10);
+
+        document.getElementById("PracownikDataZatrudnienia").value = dzisiajFormatted;
+    </script>
+
+    <button type="submit" class="btn btn-primary">Dodaj</button>
 </form>

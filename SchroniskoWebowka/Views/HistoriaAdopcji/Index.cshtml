@@ -28,10 +28,12 @@
 					@Html.DisplayFor(modelItem => histo.StatusAdopcji.StatusAdopcjiNazwa)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => histo.HistoriaAdopicjiData)
+					@histo.HistoriaAdopicjiData.ToString("yyyy-MM-dd")
 				</td>
+
+
 				<td>
-					@Html.DisplayFor(modelItem => histo.HistoriaAdopicjiOplata)
+					@Html.DisplayFor(modelItem => histo.HistoriaAdopicjiOplata) zł
 				</td>
 				<td>
 					<a href="HistoriaAdopcji/Edit/@histo.HistoriaAdopicjiId">Detale</a>
@@ -40,3 +42,4 @@
 		}
 	</tbody>
 </table>
+<a href="HistoriaAdopcji/Add/">Dokonaj nowej adopcji</a>
