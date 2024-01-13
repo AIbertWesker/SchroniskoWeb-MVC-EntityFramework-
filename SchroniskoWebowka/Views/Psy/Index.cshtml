@@ -1,55 +1,147 @@
 ﻿@model List<SchroniskoWebowka.Models.Pies>
 @{
 }
+
+<style>
+    #filtration-panel {
+        margin-bottom: 20px;
+    }
+
+    #filtration-panel label {
+        margin-right: 10px;
+    }
+</style>
+
 <h1>Psy</h1>
+
+<div id="filtration-panel">
+    <h2>Filtruj i sortuj</h2>
+    <label for="filter">Filtruj:</label>
+    <input type="text" id="filter" placeholder="Wpisz filtr rasy">
+
+    <label for="sort">Sortuj:</label>
+    <select id="sort">
+        <option value="nazwa">Nazwa</option>
+        <option value="rasa">Rasa</option>
+        <option value="wiek">Wiek</option>
+        <option value="plec">Płeć</option>
+    </select>
+
+    <label for="available">Tylko dostępne:</label>
+    <input type="checkbox" id="available" unchecked>
+</div>
+
 <table class="table">
-	<thead>
-		<tr>
-			<th scope="col">Nazwa</th>
-			<th scope="col">Rasa</th>
-			<th scope="col">Wiek</th>
-			<th scope="col">Płeć</th>
-			<th scope="col">Dostępny</th>
-			<th scope="col">Strefa</th>
-			<th scope="col">Akcja</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var pies in Model)
-		{
-			<tr>
+    <thead>
+        <tr>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Rasa</th>
+            <th scope="col">Wiek</th>
+            <th scope="col">Płeć</th>
+            <th scope="col">Dostępny</th>
+            <th scope="col">Strefa</th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pies in Model)
+        {
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => pies.PiesNazwa)
                 </td>
-				<td>
-					@Html.DisplayFor(modelItem => pies.Rasa.RasaNazwa)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => pies.Wiek.WiekNazwa)
-				</td>
-				<td>
-					@if (pies.PiesCzySuka)
-					{
-						<text>Suka</text>
-					}
-					else
-					{
-						<text>Samiec</text>
-					}
-				</td>
+                <td>
+                    @Html.DisplayFor(modelItem => pies.Rasa.RasaNazwa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => pies.Wiek.WiekNazwa)
+                </td>
+                <td>
+                    @if (pies.PiesCzySuka)
+                    {
+                        <text>Suka</text>
+                    }
+                    else
+                    {
+                        <text>Samiec</text>
+                    }
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => pies.PiesCzyDostepny)
-                </td>            
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => pies.Strefa.StrefaNazwa)
                 </td>
-				<td>
-					<a href="Psy/Edit/@pies.PiesId">Edycja</a>
-					<a href="Psy/Detal/@pies.PiesId">Detale</a>
-					<a href="Psy/Zdjecie/@pies.PiesId">Zdjecie</a>
-				</td>				
-			</tr>
-		}
-	</tbody>
+                <td>
+                    <a href="Psy/Edit/@pies.PiesId">Edycja</a>
+                    <a href="Psy/Detal/@pies.PiesId">Detale</a>
+                    <a href="Psy/Zdjecie/@pies.PiesId">Zdjęcie</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
 <a href="Psy/Add/">Dodaj nowego psa</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const filterInput = document.getElementById('filter');
+        const sortSelect = document.getElementById('sort');
+        const checkSelect = document.getElementById('available');
+        const tableBody = document.querySelector('tbody');
+
+        filterInput.addEventListener('input', function () {
+            applyFilter();
+        });
+
+        checkSelect.addEventListener('input', function () {
+            applyFilter();
+        });
+
+        sortSelect.addEventListener('change', function () {
+            applySort();
+        });
+
+        function applyFilter() {
+            const filterValue = filterInput.value.toLowerCase();
+            const onlyAvailable = document.getElementById('available').checked;
+            const rows = tableBody.querySelectorAll('tr');
+
+            rows.forEach(row => {
+                const name = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
+                const checkboxCell = row.querySelector('td:nth-child(5)');
+                const availability = checkboxCell.querySelector('input[type="checkbox"]').checked;
+
+                const nameMatch = name.includes(filterValue);
+                const availabilityMatch = !onlyAvailable || (onlyAvailable && availability);
+
+                if (nameMatch && availabilityMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function applySort() {
+            const rows = Array.from(tableBody.querySelectorAll('tr'));
+
+            rows.sort((a, b) => {
+                const aValue = getValue(a);
+                const bValue = getValue(b);
+                return aValue.localeCompare(bValue);
+            });
+
+            rows.forEach(row => {
+                tableBody.appendChild(row);
+            });
+        }
+
+        function getValue(row) {
+            const columnIndex = sortSelect.selectedIndex;
+            const cells = row.querySelectorAll('td');
+            return cells[columnIndex].innerText.toLowerCase();
+        }
+    });
+</script>
