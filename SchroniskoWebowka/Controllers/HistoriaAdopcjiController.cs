@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchroniskoWebowka.Models;
@@ -6,6 +7,7 @@ using SchroniskoWebowka.Models.AdvanceComboBoxs;
 
 namespace SchroniskoWebowka.Controllers
 {
+    [Authorize]
     public class HistoriaAdopcjiController : Controller
     {
         private readonly SchroniskoContext _context;

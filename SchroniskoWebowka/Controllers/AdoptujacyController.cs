@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchroniskoWebowka.Models;
 
 namespace SchroniskoWebowka.Controllers
 {
+    [Authorize]
     public class AdoptujacyController : Controller
     {
+
         private readonly SchroniskoContext _context;
         public AdoptujacyController(SchroniskoContext context)
         {

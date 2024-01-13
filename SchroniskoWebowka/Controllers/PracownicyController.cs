@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchroniskoWebowka.Models;
 
 namespace SchroniskoWebowka.Controllers
 {
+    [Authorize]
     public class PracownicyController : Controller
     {
         private readonly SchroniskoContext _context;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SchroniskoWebowka.Models;
@@ -7,6 +8,7 @@ using System.IO.Compression;
 
 namespace SchroniskoWebowka.Controllers
 {
+    [Authorize]
     public class PsyController : Controller
     {
         private readonly SchroniskoContext _context;

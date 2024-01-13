@@ -1,0 +1,67 @@
+﻿@model SchroniskoWebowka.Models.LoginAut;
+
+<style>
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        background-color: #fff;
+        margin: auto; /* Ustawienie auto dla marginesu poziomego centruje formularz */
+    }
+
+        .login-form h1 {
+            text-align: center;
+        }
+
+        .login-form div {
+            margin-bottom: 15px;
+            width: 100%; /* Rozciągnięcie div na szerokość formularza */
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+</style>
+
+<form class="login-form" asp-controller="Access" asp-action="Login" method="post">
+    <h1>Logowanie</h1>
+    @if (ViewData["ValidateMessage"] != null)
+    {
+        <p>@ViewData["ValidateMessage"]</p>
+    }
+    <div>
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" placeholder="Wprowadź swój email" asp-for="Email" />
+    </div>
+    <div>
+        <label for="Haslo">Hasło:</label>
+        <input type="password" id="Haslo" name="Haslo" placeholder="Wprowadź swoje hasło" asp-for="Haslo" />
+    </div>
+    <button type="submit">Zaloguj</button>
+</form>
+
+
+
