@@ -1,6 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Polityka Prywatności";
 }
-<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+    <p>Dzięki za odwiedzenie mojej strony. Została ona zrobiona w celach projektowych, aby pokazać umiejętności stworzenia plikacji webowej z dodatkiem bazy danych</p>
+
+    <h2>1. CRUD</h2>
+    <p>Podczas tworzenia tej strony udało mi sie zaimplementować operacje CRUD-a czyli:</p>
+    <ul>
+        <li>Wcztywanie informacji łącznie z relacjami z bazy</li>
+        <li>Dodawanie nowych rekordów do bazy jednocześnie do kilku tabel</li>
+        <li>Edytowanie do tabeli w bazie</li>
+        <li>Usuwanie rekordów z tabel</li>
+    </ul>
+
+    <h2>2. Dodaktowe funkcjonalności</h2>
+    <p>Udało się zaimplementować dodatkowe rzeczy, które były na troche wyższym poziomie</p>
+    <ul>
+        <li>Wgrywanie zdjęcie do bazy danych za pomocą IFormFile (sposób znajduje sie w dokumentacji Microsoftu).</li>
+        <li>Filtracja i sortowanie danych, które nie opierają się na modelu MVC. Zostały stworzone za pomocą JS.</li>
+        <li>Autoryzacja i autentykacja pracownika. Nie zaimplementowano tu osobnych ról dla użytkowników, ale można znależć na role Claimy.</li>
+    </ul>
+
+    <h2>3. Wyciąganie danych</h2>
+    <p>Na stronie można znaleźć wyciąganie banych z bazy do:</p>
+    <ul>
+        <li>Tabeli html w plikach razer.</li>
+        <li>Comboboxów z użyciem ViewBag.</li>
+        <li>Checkbox z boola bazy.</li>
+        <li>Zdjęcie z byte[] na html.</li>
+    </ul>
+    <h2>4. Co chciałbym jeszcze dodac, ale nie mam czasu.</h2>
+    <p>Fajnie by było, ale nie mam całego życia na projekt:</p>
+    <ul>
+        <li>Walidacja wszystkiego, strona przy podawaniu czegokolwiek może się wywalić bo dane nie są sprawdzane praktycznie wcale.</li>
+        <li>Podział na role dla użytkowników  uprawnienia.</li>
+        <li>Więcej tabeli + tabele z relacją wiele do wielu, tych nie miałem okazji i odwagi zrobić mimo że są w bazie.</li>
+        <li>Ładniejszy ogólny layout strony.</li>
+        <li>Obsługa przypadków usuwania danych z tabeli, które są w relacji z inną tabelą.</li>
+        <li>Lepsze przetrzymywania hasła w bazie niż zwykłym stringiem.</li>
+    </ul>
+</body>
+</html>
