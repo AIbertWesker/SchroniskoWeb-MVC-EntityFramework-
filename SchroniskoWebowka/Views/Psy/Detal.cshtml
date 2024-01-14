@@ -1,4 +1,16 @@
 ﻿@model SchroniskoWebowka.Models.Pies
+@{
+    string nowaDataStr = "";
+    if (Model.PiesDataUrodzenia != null)
+    {
+        DateTime staraData = (DateTime)Model.PiesDataUrodzenia;
+         nowaDataStr = staraData.ToString("yyyy-MM-dd");
+    }
+    else{
+		 nowaDataStr = "Brak daty";
+	}
+}
+
 
 <div class="container mt-5">
     <div class="row">
@@ -24,7 +36,7 @@
                 <li class="list-group-item"><strong>Wiek:</strong> @Model.Wiek.WiekNazwa</li>
                 <li class="list-group-item"><strong>Charakter:</strong> @Model.Charakter.CharakterNazwa</li>
                 <li class="list-group-item"><strong>Strefa:</strong> @Model.Strefa.StrefaNazwa</li>
-                <li class="list-group-item"><strong>Data przyjęcia:</strong> @Model.PiesDataUrodzenia</li>
+                <li class="list-group-item"><strong>Data przyjęcia:</strong> @nowaDataStr</li>
                 <li class="list-group-item"><strong>Opis sierści:</strong> @Model.PiesKolorWzorSiersci</li>
 
             </ul>
