@@ -35,6 +35,16 @@
                 <li class="list-group-item"><strong>Rasa:</strong> @Model.Rasa.RasaNazwa</li>
                 <li class="list-group-item"><strong>Wiek:</strong> @Model.Wiek.WiekNazwa</li>
                 <li class="list-group-item"><strong>Charakter:</strong> @Model.Charakter.CharakterNazwa</li>
+                <li class="list-group-item"><strong>Płeć:</strong>
+                    @if (Model.PiesCzySuka == true)
+                    {
+                        <text>Suka</text>
+                    }
+                    else
+                    {
+                        <text>Samiec</text>
+                    }
+                </li>
                 <li class="list-group-item"><strong>Strefa:</strong> @Model.Strefa.StrefaNazwa</li>
                 <li class="list-group-item"><strong>Data przyjęcia:</strong> @nowaDataStr</li>
                 <li class="list-group-item"><strong>Opis sierści:</strong> @Model.PiesKolorWzorSiersci</li>
