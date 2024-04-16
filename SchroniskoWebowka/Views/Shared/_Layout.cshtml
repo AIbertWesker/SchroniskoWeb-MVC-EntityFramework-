@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SchroniskoWebowka</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SchroniskoWebowka.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SchroniskoWebowka</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -20,16 +20,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Psy" asp-action="Index">Psy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Psy" asp-action="Index">Psy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Adoptujacy" asp-action="Index">Adoptujacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Adoptujacy" asp-action="Index">Adoptujacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="HistoriaAdopcji" asp-action="Index">Adopcje</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="HistoriaAdopcji" asp-action="Index">Adopcje</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pracownicy" asp-action="Index">Pracownicy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Pracownicy" asp-action="Index">Pracownicy</a>
                         </li>
                     </ul>
 
@@ -37,7 +37,7 @@
                     {
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LogOut">Wyloguj</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="LogOut">Wyloguj</a>
                             </li>
                         </ul>
                     }
@@ -52,7 +52,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="background-color: #212529">
         <div class="container">
             &copy; 2024 - SchroniskoWebowka - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
