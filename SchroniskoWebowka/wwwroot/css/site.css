@@ -22,15 +22,34 @@ p, h1, h2, h3, h4, th, tr{
     color: white;
 }
 
-
+thead > tr {
+    background-color: #000000
+}
 
 tr {
     background-color: #14101f;
 }
-tr:first-child{
-    background-color: #000000
-}
 
 tr:nth-child(even) {
     background-color: #5d2339;
+}
+
+strong, a {
+    color: white;
+}
+
+a:hover{
+    color:dimgrey;
+}
+
+.mycustomul {
+    border: 1px solid white;
+}
+
+.mycustomli{
+    border-bottom: 1px solid white;
+}
+
+.dogimage {
+    border-radius: 10%;
 }

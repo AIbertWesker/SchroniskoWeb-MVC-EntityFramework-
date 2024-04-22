@@ -17,7 +17,7 @@
         <div class="col-md-6">
             @if (Model.PiesZdjecie != null)
             {
-                <img src="data:image/png;base64,@Convert.ToBase64String(Model.PiesZdjecie)" alt="@Model.PiesNazwa" class="img-fluid">
+                <img src="data:image/png;base64,@Convert.ToBase64String(Model.PiesZdjecie)" alt="@Model.PiesNazwa" class="img-fluid dogimage">
             }
             else
             {
@@ -26,16 +26,17 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6"">
 
             <h2>@Model.PiesNazwa</h2>
             <p>@Model.PiesOpis</p>
 
-            <ul class="list-group">
-                <li class="list-group-item"><strong>Rasa:</strong> @Model.Rasa.RasaNazwa</li>
-                <li class="list-group-item"><strong>Wiek:</strong> @Model.Wiek.WiekNazwa</li>
-                <li class="list-group-item"><strong>Charakter:</strong> @Model.Charakter.CharakterNazwa</li>
-                <li class="list-group-item"><strong>Płeć:</strong>
+            <ul class="list-group mycustomul">
+                <li class="list-group-item text-white bg-dark mycustomli"><strong>Rasa:</strong> @Model.Rasa.RasaNazwa</li>
+                <li class="list-group-item text-white bg-dark mycustomli"><strong>Wiek:</strong> @Model.Wiek.WiekNazwa</li>
+                <li class="list-group-item text-white bg-dark mycustomli"><strong>Charakter:</strong> @Model.Charakter.CharakterNazwa</li>
+                <li class="list-group-item text-white bg-dark mycustomli">
+                    <strong>Płeć:</strong>
                     @if (Model.PiesCzySuka == true)
                     {
                         <text>Suka</text>
@@ -45,9 +46,9 @@
                         <text>Samiec</text>
                     }
                 </li>
-                <li class="list-group-item"><strong>Strefa:</strong> @Model.Strefa.StrefaNazwa</li>
-                <li class="list-group-item"><strong>Data przyjęcia:</strong> @nowaDataStr</li>
-                <li class="list-group-item"><strong>Opis sierści:</strong> @Model.PiesKolorWzorSiersci</li>
+                <li class="list-group-item text-white bg-dark mycustomli"><strong>Strefa:</strong> @Model.Strefa.StrefaNazwa</li>
+                <li class="list-group-item text-white bg-dark mycustomli"><strong>Data przyjęcia:</strong> @nowaDataStr</li>
+                <li class="list-group-item text-white bg-dark mycustomli"><strong>Opis sierści:</strong> @Model.PiesKolorWzorSiersci</li>
 
             </ul>
         </div>
