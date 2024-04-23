@@ -3,12 +3,12 @@
 }
  <form enctype="multipart/form-data" method="post">
         <dl>
-            <dt>
-                <label asp-for="ImageData"></label>
+            <dt style="color: white">
+                <label asp-for="ImageData">Przesył zdjęcia</label>
             </dt>
-            <dd>
+            <dd style="color: white">
                 <input asp-for="ImageData" type="file">
             </dd>
         </dl>
-        <input asp-page-handler="Upload" class="btn" type="submit" value="Upload">
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" style="color: white; background-color: #212529">
 </form>

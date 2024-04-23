@@ -2,53 +2,53 @@
 
 <form method="post" action="Add">
     <div class="mb-3">
-        <label for="PiesNazwa" class="form-label">Nazwa</label>
+        <label for="PiesNazwa" class="form-label mycustomlable">Nazwa</label>
         <input type="text" id="PiesNazwa" class="form-control" asp-for="PiesNazwa">
     </div>
 
     <div class="mb-3">
-        <label for="WybranaRasa" class="form-label">Rasa</label>
+        <label for="WybranaRasa" class="form-label mycustomlable">Rasa</label>
         @Html.DropDownList("WybranaRasa", ViewBag.Rasa as SelectList, "Wybierz rasę", new { @class = "form-control" })
     </div>
 
     <div class="mb-3">
-        <label for="WybranyWiek" class="form-label">Wiek</label>
+        <label for="WybranyWiek" class="form-label mycustomlable">Wiek</label>
         @Html.DropDownList("WybranyWiek", ViewBag.Wiek as SelectList, "Wybierz wiek", new { @class = "form-control" })
     </div>
 
     <div class="mb-3">
-        <label for="WybranyCharakter" class="form-label">Charakter</label>
+        <label for="WybranyCharakter" class="form-label mycustomlable">Charakter</label>
         @Html.DropDownList("WybranyCharakter", ViewBag.Charakter as SelectList, "Wybierz charakter", new { @class = "form-control" })
     </div>
 
     <div class="mb-3">
-        <label for="WybranaStrefa" class="form-label">Strefa</label>
+        <label for="WybranaStrefa" class="form-label mycustomlable">Strefa</label>
         @Html.DropDownList("WybranaStrefa", ViewBag.Strefa as SelectList, "Wybierz strefę", new { @class = "form-control" })
     </div>
 
     <div class="mb-3">
-        <label for="DataAdopcji" class="form-label">Data przygarnięcia</label>
+        <label for="DataAdopcji" class="form-label mycustomlable">Data przygarnięcia</label>
         <input type="date" id="DataAdopcji" class="form-control" asp-for="PiesDataUrodzenia">
     </div>
 
-    <div class="form-group form-check">
+    <div class="form-group form-check mycustomlable">
         <input class="form-check-input" type="checkbox" id="PiesCzySuka" asp-for="PiesCzySuka">
         <label class="form-check-label" for="PiesCzySuka">Czy pies jest suką?</label>
     </div>
 
-    <div class="form-group form-check">
+    <div class="form-group form-check mycustomlable">
         <input class="form-check-input" type="checkbox" id="PiesCzyDostepny" asp-for="PiesCzyDostepny">
         <label class="form-check-label" for="PiesCzyDostepny">Czy pies jest dostępny?</label>
     </div>
 
 
     <div class="mb-3">
-        <label for="PiesKolorWzorSiersci" class="form-label">Kolor i wzór sierści</label>
+        <label for="PiesKolorWzorSiersci" class="form-label mycustomlable">Kolor i wzór sierści</label>
         <textarea id="PiesKolorWzorSiersci" class="form-control" asp-for="PiesKolorWzorSiersci"></textarea>
     </div>
 
     <div class="mb-3">
-        <label for="PiesOpis" class="form-label">Opis</label>
+        <label for="PiesOpis" class="form-label mycustomlable">Opis</label>
         <textarea id="PiesOpis" class="form-control" asp-for="PiesOpis"></textarea>
     </div>
 
@@ -59,5 +59,5 @@
         document.getElementById("DataAdopcji").value = dzisiajFormatted;
     </script>
 
-    <button type="submit" class="btn btn-primary">Dodaj</button>
+    <button type="submit" class="btn btn-primary" style="background-color:#5d2339; border-color: #5d2339">Dodaj</button>
 </form>
