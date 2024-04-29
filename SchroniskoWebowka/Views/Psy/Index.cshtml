@@ -2,16 +2,6 @@
 @{
 }
 
-<style>
-    #filtration-panel {
-        margin-bottom: 20px;
-    }
-
-    #filtration-panel label {
-        margin-right: 10px;
-    }
-</style>
-
 <h1>Psy</h1>
 
 <!-- <div id="filtration-panel">
@@ -32,7 +22,59 @@
 </div>
 -->
 
-<table class="table">
+<div class="myfiltrationpanel">
+    <table class="myfiltrationtable">
+        <tr>
+            <th>Nazwa:</th>
+            <th>Rasa:</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="nazwainput" class="form-control myinput" />
+            </td>
+            <td>
+                <input type="text" id="rasainput" class="form-control myinput" />
+            </td>
+        </tr>
+        <tr>
+            <th>Data przyjęcia od:</th>
+            <th>Data przyjęcia do:</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="date" class="form-control myinput">
+            </td>
+            <td>
+                <input type="date" class="form-control myinput">
+            </td>
+        </tr>
+        <tr>
+            <th>Charakter:</th>
+            <th>Strefa</th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownList("WybranyCharakter", ViewBag.Charakter as SelectList, "Wybierz charakter", new { @class = "form-control myinput" })
+            </td>
+            <td>
+                @Html.DropDownList("WybranaStrefa", ViewBag.Strefa as SelectList, "Wybierz strefę", new { @class = "form-control myinput", @id = "strefainput" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="isDostepny"> Tylko dostępne</label>
+                <input class="form-check-input" type="checkbox" id="dostepnyinput" name="isdostepny" value="Treu">
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="filterTable()" style="background-color:#5d2339; border-color: #5d2339">Filtruj</button>
+                <button type="button" class="btn btn-primary" style="background-color:#5d2339; border-color: #5d2339">Wyczyść</button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<table class="table" id="dataTable">
     <thead>
         <tr>
             <th scope="col">Nazwa</th>
@@ -68,7 +110,7 @@
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => pies.PiesCzyDostepny)
+                    @Html.DisplayFor(modelItem => pies.PiesCzyDostepny )
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => pies.Strefa.StrefaNazwa)
@@ -103,6 +145,58 @@
 <a asp-controller="Psy" asp-action="Add">Dodaj nowego psa</a>
 
 <script>
+    function filterTable() {
+        const tableBody = document.getElementById("dataTable");
+        const rows = tableBody.querySelectorAll('tr');
+
+        const inputNazwa = document.getElementById("nazwainput").value.toLowerCase();
+        const inputRasa = document.getElementById("rasainput").value.toLowerCase();
+        const inputDostepnosc = document.getElementById("dostepnyinput").checked;
+        
+        const selectElement = document.getElementById("strefainput");
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        var inputStrefa = selectedOption.textContent.toLowerCase();
+        if (inputStrefa == "wybierz strefę") {
+            inputStrefa = "";
+        }
+        
+
+        // console.log("guzik worki")
+        // console.log(rows)
+        
+        for (i = 1; i < rows.length; i++) {
+            var nazwaCell = rows[i].getElementsByTagName("td")[0];
+            var rasaCell = rows[i].getElementsByTagName("td")[1];
+            var strefaCell = rows[i].getElementsByTagName("td")[5];
+            var dostepnyCell = rows[i].getElementsByTagName("td")[4];
+            var nazwaText = nazwaCell.innerText.toLowerCase() || nazwaCell.textContent.toLowerCase()
+            var rasaText = rasaCell.innerText.toLowerCase() || rasaCell.textContent.toLowerCase()
+            var strefaText = strefaCell.innerText.toLowerCase() || inputStrefa.textContent.toLowerCase()
+            var checkbox = dostepnyCell.querySelector('input[type="checkbox"]');
+            var isChecked = checkbox.checked;
+
+            const nameMatch = nazwaText.includes(inputNazwa);
+            const rasaMatch = rasaText.includes(inputRasa);
+            const strefaMatch = strefaText.includes(inputStrefa);
+
+            if (nameMatch && rasaMatch && strefaMatch) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+
+            if (inputDostepnosc) {
+                if (isChecked) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+    }
+</script>
+
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const filterInput = document.getElementById('filter');
         const sortSelect = document.getElementById('sort');
@@ -163,3 +257,4 @@
         }
     });
 </script>
+-->

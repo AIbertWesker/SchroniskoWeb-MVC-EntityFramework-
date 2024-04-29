@@ -20,7 +20,9 @@ namespace SchroniskoWebowka.Controllers
         public async Task<IActionResult> Index()
         {
 			var schroniskoContext = _context.Pies.Include(p => p.Charakter).Include(p => p.Rasa).Include(p => p.Strefa).Include(p => p.Wiek);
-			return View(await schroniskoContext.ToListAsync());
+            ViewBag.Strefa = new SelectList(_context.Strefas, "StrefaId", "StrefaNazwa");
+            ViewBag.Charakter = new SelectList(_context.Charakters, "CharakterId", "CharakterNazwa");
+            return View(await schroniskoContext.ToListAsync());
 		}
 
         [HttpGet]

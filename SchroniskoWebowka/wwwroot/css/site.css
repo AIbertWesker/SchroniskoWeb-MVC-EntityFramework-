@@ -57,3 +57,30 @@ a:hover{
 .mycustomlable{
     color: white;
 }
+
+.myfiltrationpanel{
+    background-color: transparent;
+    margin-inline: 10%;
+    border: solid 1px gray;
+    margin-bottom: 10px;
+}
+
+.myfiltrationtable{
+    width: 90%;
+    margin-inline:  5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.myinput{
+    margin-bottom: 2%;
+
+}
+
+.myfiltrationtable td, th{
+    padding: 0 7%;
+}
+
+.myfiltrationtable td button {
+    margin: 1%;
+}
