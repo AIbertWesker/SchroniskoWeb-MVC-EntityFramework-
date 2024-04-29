@@ -1,5 +1,6 @@
 ﻿@model List<SchroniskoWebowka.Models.Pies>
 @{
+
 }
 
 <h1>Psy</h1>
@@ -42,19 +43,23 @@
         </tr>
         <tr>
             <td>
-                <input type="date" class="form-control myinput">
+                <input type="date" class="form-control myinput" id="dataodinput">
             </td>
             <td>
-                <input type="date" class="form-control myinput">
+                <input type="date" class="form-control myinput" id="datadoinput">
             </td>
         </tr>
         <tr>
-            <th>Charakter:</th>
+            <th>Płeć:</th>
             <th>Strefa</th>
         </tr>
         <tr>
             <td>
-                @Html.DropDownList("WybranyCharakter", ViewBag.Charakter as SelectList, "Wybierz charakter", new { @class = "form-control myinput" })
+                <select name="Plec" id="plecinput" class="form-control myinput">
+                    <option value="">Wybierz płeć</option>
+                    <option value="samiec">Samiec</option>
+                    <option value="suka">Suka</option>
+                </select>
             </td>
             <td>
                 @Html.DropDownList("WybranaStrefa", ViewBag.Strefa as SelectList, "Wybierz strefę", new { @class = "form-control myinput", @id = "strefainput" })
@@ -137,6 +142,7 @@
                         Zdjęcie
                     </a>
                 </td>
+                <td style="display: none;">@Html.DisplayFor(modelItem => pies.PiesDataUrodzenia, new { @id = "datatimeInfo" })</td>
             </tr>
         }
     </tbody>
@@ -152,6 +158,8 @@
         const inputNazwa = document.getElementById("nazwainput").value.toLowerCase();
         const inputRasa = document.getElementById("rasainput").value.toLowerCase();
         const inputDostepnosc = document.getElementById("dostepnyinput").checked;
+        const inputDataOd = document.getElementById("dataodinput").value;
+        const inputDataDo = document.getElementById("datadoinput").value;
         
         const selectElement = document.getElementById("strefainput");
         const selectedOption = selectElement.options[selectElement.selectedIndex];
@@ -159,7 +167,10 @@
         if (inputStrefa == "wybierz strefę") {
             inputStrefa = "";
         }
-        
+
+        const selectElementPlec = document.getElementById("plecinput");
+        const selectedPlec = selectElementPlec.options[selectElementPlec.selectedIndex];
+        var inputPlec = selectedPlec.value;
 
         // console.log("guzik worki")
         // console.log(rows)
@@ -169,92 +180,52 @@
             var rasaCell = rows[i].getElementsByTagName("td")[1];
             var strefaCell = rows[i].getElementsByTagName("td")[5];
             var dostepnyCell = rows[i].getElementsByTagName("td")[4];
+            var dataCell = rows[i].getElementsByTagName("td")[7];
+            var plecCell = rows[i].getElementsByTagName("td")[3];
+
             var nazwaText = nazwaCell.innerText.toLowerCase() || nazwaCell.textContent.toLowerCase()
             var rasaText = rasaCell.innerText.toLowerCase() || rasaCell.textContent.toLowerCase()
-            var strefaText = strefaCell.innerText.toLowerCase() || inputStrefa.textContent.toLowerCase()
+            var strefaText = strefaCell.innerText.toLowerCase() || strefaCell.textContent.toLowerCase()
+            var plecText = plecCell.innerText.toLowerCase() || plecCell.textContent.toLowerCase()
             var checkbox = dostepnyCell.querySelector('input[type="checkbox"]');
             var isChecked = checkbox.checked;
+
+            var dateString = dataCell.textContent;
+            var parts = dateString.split(' ');
+            var datePart = parts[0].split('.');
+            var timePart = parts[1].split(':');
+            var dateObject = new Date(datePart[2], datePart[1] - 1, datePart[0], timePart[0], timePart[1], timePart[2]);
+            var dateinputOd = new Date(inputDataOd);
+            var dateinputDo = new Date(inputDataDo);
 
             const nameMatch = nazwaText.includes(inputNazwa);
             const rasaMatch = rasaText.includes(inputRasa);
             const strefaMatch = strefaText.includes(inputStrefa);
+            const plecMatch = plecText.includes(inputPlec);
 
-            if (nameMatch && rasaMatch && strefaMatch) {
-                rows[i].style.display = '';
-            } else {
+            rows[i].style.display = '';
+            if (!nameMatch) {
+                rows[i].style.display = 'none';
+            }
+            if (!rasaMatch) {
+                rows[i].style.display = 'none';
+            }
+            if (inputDostepnosc) {
+                if (!isChecked) {
+                        rows[i].style.display = 'none';
+                }
+            }
+            if (!strefaMatch) {
+                rows[i].style.display = 'none';
+            }
+            if (dateObject < dateinputOd || dateObject > dateinputDo) {
+                rows[i].style.display = 'none';
+            }
+            if (!plecMatch) {
                 rows[i].style.display = 'none';
             }
 
-            if (inputDostepnosc) {
-                if (isChecked) {
-                    rows[i].style.display = '';
-                } else {
-                    rows[i].style.display = 'none';
-                }
-            }
+
         }
     }
 </script>
-
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const filterInput = document.getElementById('filter');
-        const sortSelect = document.getElementById('sort');
-        const checkSelect = document.getElementById('available');
-        const tableBody = document.querySelector('tbody');
-
-        filterInput.addEventListener('input', function () {
-            applyFilter();
-        });
-
-        checkSelect.addEventListener('input', function () {
-            applyFilter();
-        });
-
-        sortSelect.addEventListener('change', function () {
-            applySort();
-        });
-
-        function applyFilter() {
-            const filterValue = filterInput.value.toLowerCase();
-            const onlyAvailable = document.getElementById('available').checked;
-            const rows = tableBody.querySelectorAll('tr');
-
-            rows.forEach(row => {
-                const name = row.querySelector('td:nth-child(2)').innerText.toLowerCase();
-                const checkboxCell = row.querySelector('td:nth-child(5)');
-                const availability = checkboxCell.querySelector('input[type="checkbox"]').checked;
-
-                const nameMatch = name.includes(filterValue);
-                const availabilityMatch = !onlyAvailable || (onlyAvailable && availability);
-
-                if (nameMatch && availabilityMatch) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        function applySort() {
-            const rows = Array.from(tableBody.querySelectorAll('tr'));
-
-            rows.sort((a, b) => {
-                const aValue = getValue(a);
-                const bValue = getValue(b);
-                return aValue.localeCompare(bValue);
-            });
-
-            rows.forEach(row => {
-                tableBody.appendChild(row);
-            });
-        }
-
-        function getValue(row) {
-            const columnIndex = sortSelect.selectedIndex;
-            const cells = row.querySelectorAll('td');
-            return cells[columnIndex].innerText.toLowerCase();
-        }
-    });
-</script>
--->
