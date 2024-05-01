@@ -4,26 +4,9 @@
 }
 
 <h1>Psy</h1>
-
-<!-- <div id="filtration-panel">
-    <h2>Filtruj i sortuj</h2>
-    <label for="filter">Filtruj:</label>
-    <input type="text" id="filter" placeholder="Wpisz filtr rasy">
-
-    <label for="sort">Sortuj:</label>
-    <select id="sort">
-        <option value="nazwa">Nazwa</option>
-        <option value="rasa">Rasa</option>
-        <option value="wiek">Wiek</option>
-        <option value="plec">Płeć</option>
-    </select>
-
-    <label for="available">Tylko dostępne:</label>
-    <input type="checkbox" id="available" unchecked>
-</div>
--->
-
-<div class="myfiltrationpanel">
+<button onclick="hideFilter()" id="hiddeButton" type="button" class="btn btn-primary" style="background-color:#5d2339; border-color: #5d2339">Schowaj filtry</button>
+<div class="myfiltrationpanel" id="filtrPanel">
+    <form id= "Form">
     <table class="myfiltrationtable">
         <tr>
             <th>Nazwa:</th>
@@ -72,10 +55,11 @@
             </td>
             <td>
                 <button type="button" class="btn btn-primary" onclick="filterTable()" style="background-color:#5d2339; border-color: #5d2339">Filtruj</button>
-                <button type="button" class="btn btn-primary" style="background-color:#5d2339; border-color: #5d2339">Wyczyść</button>
+                    <button type="button" class="btn btn-primary" onClick="clearInput()" style="background-color:#5d2339; border-color: #5d2339">Wyczyść</button>
             </td>
         </tr>
     </table>
+    </form>
 
 </div>
 
@@ -224,8 +208,24 @@
             if (!plecMatch) {
                 rows[i].style.display = 'none';
             }
+        }
+    }
 
+    function clearInput() {
+        document.getElementById("Form").reset();
+        filterTable();
+    }
 
+    function hideFilter() {
+        var x = document.getElementById("filtrPanel");
+        var y = document.getElementById("hiddeButton")
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.textContent = "Schowaj filtry"
+
+        } else {
+            x.style.display = "none";
+            y.textContent = "Pokaz filtry";
         }
     }
 </script>
