@@ -158,6 +158,7 @@
 
         // console.log("guzik worki")
         // console.log(rows)
+        var colorOfRow = false;
         
         for (i = 1; i < rows.length; i++) {
             var nazwaCell = rows[i].getElementsByTagName("td")[0];
@@ -187,26 +188,44 @@
             const strefaMatch = strefaText.includes(inputStrefa);
             const plecMatch = plecText.includes(inputPlec);
 
+            var isDisplayed = true;
+
             rows[i].style.display = '';
             if (!nameMatch) {
                 rows[i].style.display = 'none';
+                isDisplayed = false;
             }
             if (!rasaMatch) {
                 rows[i].style.display = 'none';
+                isDisplayed = false;
             }
             if (inputDostepnosc) {
                 if (!isChecked) {
                         rows[i].style.display = 'none';
+                        isDisplayed = false;
                 }
             }
             if (!strefaMatch) {
                 rows[i].style.display = 'none';
+                isDisplayed = false;
             }
             if (dateObject < dateinputOd || dateObject > dateinputDo) {
                 rows[i].style.display = 'none';
+                isDisplayed = false;
             }
             if (!plecMatch) {
                 rows[i].style.display = 'none';
+                isDisplayed = false;
+            }
+
+            if (isDisplayed) {
+                if (colorOfRow == false) {
+                    rows[i].style.backgroundColor = '#14101f';
+                }
+                else {
+                    rows[i].style.backgroundColor = '#5d2339';
+                }
+                colorOfRow = !colorOfRow;
             }
         }
     }
